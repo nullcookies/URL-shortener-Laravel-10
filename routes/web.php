@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\ShortURLController::class, 'index']);
+Route::resource('shorten-url', \App\Http\Controllers\ShortURLController::class);
+
+Route::get('{url_key}', '\App\Http\Controllers\ShortURLController@shortenUrl')->name('shorten.url');
